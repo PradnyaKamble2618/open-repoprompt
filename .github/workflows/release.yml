@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write  # This is required for creating releases and uploading assets
+
 jobs:
   build:
     name: Build and Release
