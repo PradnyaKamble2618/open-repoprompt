@@ -282,6 +282,7 @@ func (a *App) applyFilters() {
 	// Use default filters
 	filters := fileutils.FileFilters{
 		// No filters - show all files
+		RespectGitignore: true, // Respect .gitignore files by default
 	}
 	
 	// Load files
@@ -318,13 +319,17 @@ func (a *App) updateTokenEstimation() {
 	// Rough estimate: 1 token per 4 characters
 	estimatedTokens := totalSize / 4
 	
+	// Format the token count
+	formattedTokens := fileutils.FormatTokenCount(estimatedTokens)
+	
 	// Update token estimation label
-	a.tokenEstimation.SetText(fmt.Sprintf("Estimated Tokens: ~%d (rough estimate)", estimatedTokens))
+	a.tokenEstimation.SetText(fmt.Sprintf("Estimated Tokens: ~%s (rough estimate)", formattedTokens))
 	
 	// Check if exceeds limit
 	limit := 8192 // Default for GPT-4
 	if estimatedTokens > limit {
-		a.tokenEstimation.SetText(fmt.Sprintf("Estimated Tokens: ~%d (exceeds limit of %d)", estimatedTokens, limit))
+		a.tokenEstimation.SetText(fmt.Sprintf("Estimated Tokens: ~%s (exceeds limit of %s)", 
+			formattedTokens, fileutils.FormatTokenCount(limit)))
 	}
 }
 

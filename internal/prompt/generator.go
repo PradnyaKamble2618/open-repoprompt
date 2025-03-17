@@ -8,11 +8,13 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"sync"
 	"sync/atomic"
 
 	"github.com/openprompt/internal/fileutils"
 	"github.com/pkoukk/tiktoken-go"
+	gitignore "github.com/sabhiram/go-gitignore"
 )
 
 // Prompt represents an XML prompt for an LLM
@@ -97,6 +99,20 @@ func GenerateXML(files []*fileutils.FileInfo, instructions string, baseDir strin
 				relPath, err := filepath.Rel(baseDir, fileInfo.Path)
 				if err != nil {
 					relPath = fileInfo.Path
+				}
+
+				// Skip .DS_Store files
+				if strings.HasSuffix(relPath, ".DS_Store") {
+					continue
+				}
+
+				// Check if file should be ignored based on .gitignore
+				gitIgnorePath := filepath.Join(baseDir, ".gitignore")
+				if _, err := os.Stat(gitIgnorePath); err == nil {
+					ignore, err := gitignore.CompileIgnoreFile(gitIgnorePath)
+					if err == nil && ignore.MatchesPath(relPath) {
+						continue
+					}
 				}
 
 				// Get file type

@@ -1,6 +1,8 @@
 package fileutils
 
 import (
+	"bufio"
+	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
@@ -19,6 +21,130 @@ type FileInfo struct {
 	TokenCount int // Estimated token count
 }
 
+// gitignorePatterns holds the patterns from .gitignore files
+type gitignorePatterns struct {
+	patterns []string
+}
+
+// newGitignorePatterns creates a new gitignorePatterns instance
+func newGitignorePatterns(rootDir string) (*gitignorePatterns, error) {
+	gitignore := &gitignorePatterns{
+		patterns: []string{},
+	}
+	
+	// Load the .gitignore file from the root directory
+	gitignorePath := filepath.Join(rootDir, ".gitignore")
+	if _, err := os.Stat(gitignorePath); err == nil {
+		if err := gitignore.loadGitignoreFile(gitignorePath); err != nil {
+			return nil, err
+		}
+	}
+	
+	return gitignore, nil
+}
+
+// loadGitignoreFile loads patterns from a .gitignore file
+func (g *gitignorePatterns) loadGitignoreFile(path string) error {
+	file, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		
+		// Skip empty lines and comments
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		
+		// Add the pattern
+		g.patterns = append(g.patterns, line)
+	}
+	
+	return scanner.Err()
+}
+
+// shouldIgnore checks if a file should be ignored based on gitignore patterns
+func (g *gitignorePatterns) shouldIgnore(path string, isDir bool) bool {
+	// Convert path to use forward slashes for consistency with gitignore patterns
+	path = filepath.ToSlash(path)
+	
+	for _, pattern := range g.patterns {
+		// Handle negation (patterns starting with !)
+		negate := false
+		if strings.HasPrefix(pattern, "!") {
+			negate = true
+			pattern = pattern[1:]
+		}
+		
+		// Handle directory-specific patterns (ending with /)
+		dirOnly := false
+		if strings.HasSuffix(pattern, "/") {
+			dirOnly = true
+			pattern = pattern[:len(pattern)-1]
+		}
+		
+		// Skip directory-only patterns if this is a file
+		if dirOnly && !isDir {
+			continue
+		}
+		
+		// Handle simple glob patterns
+		matched := false
+		
+		// Exact match
+		if path == pattern {
+			matched = true
+		}
+		
+		// Match with wildcards
+		if strings.Contains(pattern, "*") {
+			if matched, _ := filepath.Match(pattern, filepath.Base(path)); matched {
+				return !negate
+			}
+			
+			// Handle ** pattern (match any directory)
+			if strings.Contains(pattern, "**") {
+				// Replace ** with a placeholder that won't match normal characters
+				patternRegex := strings.Replace(pattern, "**", ".*", -1)
+				patternRegex = strings.Replace(patternRegex, "*", "[^/]*", -1)
+				patternRegex = "^" + patternRegex + "$"
+				
+				// Simple check: if the pattern is a prefix of the path
+				if strings.HasPrefix(path, strings.TrimSuffix(pattern, "/**")) {
+					matched = true
+				}
+			}
+		}
+		
+		// Handle directory prefix patterns
+		if !matched && strings.Contains(pattern, "/") {
+			if strings.HasPrefix(path, pattern) {
+				matched = true
+			}
+		}
+		
+		// If the pattern matches, respect negation
+		if matched {
+			return !negate
+		}
+	}
+	
+	return false
+}
+
+// FileFilters represents filters for file selection
+type FileFilters struct {
+	Extensions     []string
+	NamePattern    string
+	IgnorePatterns []string
+	SubPath        string // Path relative to the root directory
+	RespectGitignore bool // Whether to respect .gitignore files
+}
+
 // ListFiles returns a list of files in the given directory
 func ListFiles(dir string, filters FileFilters) ([]*FileInfo, error) {
 	var result []*FileInfo
@@ -28,9 +154,35 @@ func ListFiles(dir string, filters FileFilters) ([]*FileInfo, error) {
 		dir = filepath.Join(dir, filters.SubPath)
 	}
 	
-	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+	// Load gitignore patterns if needed
+	var gitignore *gitignorePatterns
+	var err error
+	if filters.RespectGitignore {
+		gitignore, err = newGitignorePatterns(dir)
+		if err != nil {
+			return nil, err
+		}
+	}
+	
+	err = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return nil // Skip inaccessible paths
+		}
+		
+		// Get relative path for gitignore checking
+		relPath, relErr := filepath.Rel(dir, path)
+		if relErr != nil {
+			relPath = path
+		}
+		
+		// Skip if matches gitignore patterns
+		if filters.RespectGitignore && gitignore != nil && path != dir {
+			if gitignore.shouldIgnore(relPath, info.IsDir()) {
+				if info.IsDir() {
+					return filepath.SkipDir
+				}
+				return nil
+			}
 		}
 		
 		// Skip if matches ignore patterns
@@ -90,14 +242,6 @@ func ListFiles(dir string, filters FileFilters) ([]*FileInfo, error) {
 	})
 	
 	return result, err
-}
-
-// FileFilters represents filters for file selection
-type FileFilters struct {
-	Extensions     []string
-	NamePattern    string
-	IgnorePatterns []string
-	SubPath        string // Path relative to the root directory
 }
 
 // ParseExtensions parses a comma-separated list of extensions
@@ -264,6 +408,17 @@ func CalculateDirectoryTokenCount(dir *FileInfo) int {
 	dir.TokenCount = totalTokens
 	
 	return totalTokens
+}
+
+// FormatTokenCount formats a token count into a human-readable string (e.g., 1.2K, 3.5M)
+func FormatTokenCount(count int) string {
+	if count < 1000 {
+		return fmt.Sprintf("%d", count)
+	} else if count < 1000000 {
+		return fmt.Sprintf("%.1fK", float64(count)/1000)
+	} else {
+		return fmt.Sprintf("%.1fM", float64(count)/1000000)
+	}
 }
 
 // sortFileTreeDirectoriesFirst sorts a slice of FileInfo so directories come first

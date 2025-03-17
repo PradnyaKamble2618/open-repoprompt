@@ -41,7 +41,7 @@ func NewFileTreeWidget(onChanged func()) *FileTreeWidget {
 // CreateRenderer creates a renderer for the file tree widget
 func (t *FileTreeWidget) CreateRenderer() fyne.WidgetRenderer {
 	scroll := container.NewScroll(t.container)
-	scroll.SetMinSize(fyne.NewSize(300, 500)) // Set larger minimum size
+	scroll.SetMinSize(fyne.NewSize(300, 700)) // Set larger minimum size
 	
 	// Create a border container to make the file tree more visible
 	border := container.NewBorder(nil, nil, nil, nil, scroll)
@@ -51,7 +51,7 @@ func (t *FileTreeWidget) CreateRenderer() fyne.WidgetRenderer {
 
 // MinSize returns the minimum size of the widget
 func (t *FileTreeWidget) MinSize() fyne.Size {
-	return fyne.NewSize(300, 500)
+	return fyne.NewSize(300, 700)
 }
 
 // LoadDirectory loads files from a directory
@@ -156,8 +156,8 @@ func (t *FileTreeWidget) addFileToUI(file *fileutils.FileInfo, indent int) {
 		icon = theme.DocumentIcon()
 	}
 	
-	// Create token count label
-	tokenLabel := widget.NewLabel(fmt.Sprintf("[%d tokens]", file.TokenCount))
+	// Create token count label with formatted count
+	tokenLabel := widget.NewLabel(fmt.Sprintf("[%s tokens]", fileutils.FormatTokenCount(file.TokenCount)))
 	
 	// Create a container for the file/directory
 	var item *fyne.Container
