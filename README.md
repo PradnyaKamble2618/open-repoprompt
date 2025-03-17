@@ -1,55 +1,71 @@
 # OpenPrompt
 
-OpenPrompt is a native Go application for generating optimized XML prompts for large language models (LLMs). It allows you to select files from your filesystem, filter them based on various criteria, and generate structured XML prompts that can be copied to the clipboard for use with LLMs.
+![OpenPrompt Interface](home.png)
+
+OpenPrompt is a fast, lightweight Go tool that helps you feed your code and documentation to LLMs like Claude, GPT-4, and Grok without hitting token limits or waiting forever.
+
+## Why OpenPrompt?
+
+- **Speed**: Process gigabytes of code instantly with Go's powerful concurrency
+- **Simplicity**: Select files with a simple UI, generate XML prompts with one click
+- **Efficiency**: Stop wasting time on slow tools that choke on large codebases
 
 ## Features
 
-- **Advanced File Selection**: Easily select files with a tree view and checkboxes
-- **Filtering Capabilities**: Filter files by extension, name pattern, and ignore patterns
-- **XML Prompt Generation**: Generate optimized XML prompts for large language models
-- **Token Estimation**: Estimate token usage for your prompt
-- **Clipboard Integration**: Copy the generated XML prompt to your clipboard
-- **Persistent Settings**: Automatically saves your last directory and filter settings
-- **Manual Path Entry**: Enter directory paths directly or use the file browser
-- **Fast and Native**: Built with Go and Fyne for a responsive, cross-platform experience
+- **Easy File Selection**: Browse and select files with a tree view and checkboxes
+- **Smart Filtering**: Include/exclude files by extension, name pattern, or custom patterns
+- **XML Prompt Generation**: Create perfectly formatted prompts for any LLM
+- **Token Estimation**: Know exactly how many tokens you're using
+- **Clipboard Integration**: Copy prompts directly to your clipboard
+- **Settings Persistence**: Your preferences are saved automatically
+
+## Use Cases
+
+- **Code Reviews**: Feed your entire codebase for comprehensive reviews
+- **Documentation Generation**: Create docs for your project based on source code
+- **Refactoring Help**: Get suggestions for improving complex code
+- **Bug Hunting**: Let LLMs analyze your code to find potential issues
+- **Learning New Codebases**: Quickly understand unfamiliar projects
+- **Architecture Analysis**: Get insights on your project structure
 
 ## Installation
 
-### Prerequisites
+### Download Pre-built Binary (Recommended)
 
-- Go 1.16 or later
+1. Go to the [Releases page](https://github.com/wildberry-source/open-repoprompt/releases)
+2. Download the appropriate version for your operating system:
+   - Windows: `openprompt-windows-amd64.exe`
+   - macOS: `openprompt-macos-amd64`
+   - Linux: `openprompt-linux-amd64`
+3. For macOS and Linux users, make the file executable:
+   ```bash
+   chmod +x openprompt-*-amd64
+   ```
+4. Double-click the executable or run it from the terminal to start OpenPrompt
 
 ### Building from Source
 
-1. Clone the repository
-2. Navigate to the project directory
-3. Run `go build -o openprompt ./cmd`
+```bash
+# Clone the repository
+git clone https://github.com/wildberry-source/open-repoprompt.git
 
-## Usage
+# Navigate to the project directory
+cd open-repoprompt
 
-1. **Select Directory**: Click the "Select Directory" button to choose a directory containing your code files. You can either browse for a directory or enter the path manually.
+# Build the application
+go build -o openprompt ./cmd
+```
 
-2. **Apply Filters**:
-   - Enter file extensions to include (e.g., `go,txt,md`)
-   - Specify name patterns using glob syntax (e.g., `main*` for files starting with "main")
-   - Define ignore patterns for files/directories to exclude (e.g., `.git,node_modules`)
-   - Click "Apply Filters" to update the file tree
+## How to Use
 
-3. **Select Files**: Check the boxes next to the files you want to include in your prompt
-
-4. **Add Instructions**: Enter instructions for the LLM in the provided text area
-
-5. **Generate Prompt**: Click "Generate XML" to create the prompt based on your selections
-
-6. **Copy to Clipboard**: Click "Copy to Clipboard" to copy the generated XML prompt
-
-7. **Preview XML**: Click "Preview XML" to view the generated XML prompt
-
-Your settings, including the last directory and filter preferences, will be automatically saved and restored the next time you open the application.
+1. **Select Directory**: Choose a directory containing your code
+2. **Set Filters**: Specify which files to include/exclude
+3. **Select Files**: Check the boxes next to files you want
+4. **Add Instructions**: Tell the LLM what you need
+5. **Generate & Copy**: Create your XML prompt and copy to clipboard
+6. **Paste into LLM**: Use with Claude, GPT-4, Grok, or any LLM that accepts XML
 
 ## XML Prompt Format
-
-The XML prompt format is structured as follows:
 
 ```xml
 <prompt>
