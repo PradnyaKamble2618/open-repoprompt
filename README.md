@@ -1,47 +1,26 @@
 # OpenPrompt
 
+![OpenPrompt Interface](openprompt.png)
+
+# COPY ENTIRE FOLDER AND FILES INSIDE LLM OF YOUR CHOICE
+
 ![OpenPrompt Interface](home.png)
 
-OpenPrompt is a fast, lightweight Go tool that helps you feed your code and documentation to LLMs like Claude, GPT-4, and Grok without hitting token limits or waiting forever.
+o1 PRO , GROK 3 thinking are one of the best model available right now, but there is api access available.
+This Tool Simplifies the process of copying files and folders into LLMs.
 
-## Why OpenPrompt?
-
-- **Speed**: Process gigabytes of code instantly with Go's powerful concurrency
-- **Simplicity**: Select files with a simple UI, generate XML prompts with one click
-- **Efficiency**: Stop wasting time on slow tools that choke on large codebases
-
-## Features
-
-- **Easy File Selection**: Browse and select files with a tree view and checkboxes
-- **Smart Filtering**: Include/exclude files by extension, name pattern, or custom patterns
-- **XML Prompt Generation**: Create perfectly formatted prompts for any LLM
-- **Token Estimation**: Know exactly how many tokens you're using
-- **Clipboard Integration**: Copy prompts directly to your clipboard
-- **Settings Persistence**: Your preferences are saved automatically
-
-## Use Cases
-
-- **Code Reviews**: Feed your entire codebase for comprehensive reviews
-- **Documentation Generation**: Create docs for your project based on source code
-- **Refactoring Help**: Get suggestions for improving complex code
-- **Bug Hunting**: Let LLMs analyze your code to find potential issues
-- **Learning New Codebases**: Quickly understand unfamiliar projects
-- **Architecture Analysis**: Get insights on your project structure
+Fastest Serialization of files and folders into XML format.
 
 ## Installation
 
-### Download Pre-built Binary (Recommended)
+### Download Executable (Recommended)
 
 1. Go to the [Releases page](https://github.com/wildberry-source/open-repoprompt/releases)
 2. Download the appropriate version for your operating system:
    - Windows: `openprompt-windows-amd64.exe`
    - macOS: `openprompt-macos-amd64`
    - Linux: `openprompt-linux-amd64`
-3. For macOS and Linux users, make the file executable:
-   ```bash
-   chmod +x openprompt-*-amd64
-   ```
-4. Double-click the executable or run it from the terminal to start OpenPrompt
+
 
 ### Building from Source
 
@@ -65,6 +44,15 @@ go build -o openprompt ./cmd
 5. **Generate & Copy**: Create your XML prompt and copy to clipboard
 6. **Paste into LLM**: Use with Claude, GPT-4, Grok, or any LLM that accepts XML
 
+## Use Cases
+
+- **Code Reviews**: Feed your entire codebase for comprehensive reviews
+- **Documentation Generation**: Create docs for your project based on source code
+- **Refactoring Help**: Get suggestions for improving complex code
+- **Bug Hunting**: Let LLMs analyze your code to find potential issues
+- **Learning New Codebases**: Quickly understand unfamiliar projects
+- **Architecture Analysis**: Get insights on your project structure
+
 ## XML Prompt Format
 
 ```xml
@@ -81,6 +69,12 @@ func main() {
   <instructions>Analyze the code and suggest improvements.</instructions>
 </prompt>
 ```
+
+## Stars
+
+
+![Popularity](star-history.png)
+
 
 ## License
 
