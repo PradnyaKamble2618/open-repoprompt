@@ -4,7 +4,6 @@
   <img src="openprompt.png" width="400">
 </p>
 
-<a href="https://www.producthunt.com/posts/openprompter?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-openprompter" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=943428&theme=light&t=1742368401304" alt="OpenPrompter - Copy&#0032;Entire&#0032;Folder&#0032;Into&#0032;LLM&#0032;&#0040;&#0032;100&#0037;&#0032;Open&#0032;Source&#0032;&#0041; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 ---
 ## Quick Start
 
