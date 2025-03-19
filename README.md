@@ -2,7 +2,7 @@
 
 ![OpenPrompt Interface](openprompt.png)
 
-# COPY ENTIRE FOLDER AND FILES INSIDE LLM OF YOUR CHOICE
+# COPY ENTIRE FOLDER AND FILES as context INSIDE LLM OF YOUR CHOICE
 
 ![OpenPrompt Interface](home.png)
 
