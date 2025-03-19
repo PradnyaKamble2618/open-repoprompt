@@ -19,6 +19,7 @@ Fastest Serialization of files and folders into XML format.
 2. Download the appropriate version for your operating system:
    - Windows: `openprompt-windows-amd64.exe`
    - macOS: `openprompt-macos-amd64`
+   - macOS arm: `openprompt-macos-arm64`
    - Linux: `openprompt-linux-amd64`
 
 
