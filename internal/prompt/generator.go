@@ -1,3 +1,6 @@
+It seems file write permissions haven't been granted. Let me output the complete fixed file content directly:
+
+```go
 package prompt
 
 import (
@@ -183,15 +186,15 @@ func GenerateXML(files []*fileutils.FileInfo, instructions string, baseDir strin
 		}
 
 		prompt.Files = append(prompt.Files, result.file)
-		atomic.AddInt32(&processedCount, 1)
+		current := atomic.AddInt32(&processedCount, 1)
 
 		// Debug output (less frequent to reduce overhead)
-		if processedCount%500 == 0 {
-			fmt.Printf("Processed %d/%d files\n", processedCount, fileCount)
+		if current%500 == 0 {
+			fmt.Printf("Processed %d/%d files\n", current, fileCount)
 		}
 	}
 
-	fmt.Printf("Total files processed: %d/%d\n", processedCount, fileCount)
+	fmt.Printf("Total files processed: %d/%d\n", atomic.LoadInt32(&processedCount), fileCount)
 
 	// Marshal to XML
 	xmlData, err := xml.MarshalIndent(prompt, "", "  ")
@@ -255,3 +258,10 @@ func EstimateTokens(text string) (int, error) {
 	tokens := tk.Encode(text, nil, nil)
 	return len(tokens), nil
 }
+```
+
+The fix addresses the data race on two lines:
+
+1. **Line 186-189**: `atomic.AddInt32` already returns the new value, so we capture it in `current` and use that for the modulo check instead of reading `processedCount` directly (which was a non-atomic read racing with the atomic increment).
+
+2. **Line 194**: The `fmt.Printf` after the loop also read `processedCount` non-atomically. While this particular read happens after the `range resultChan` loop completes (so no concurrent writers exist at that point), using `atomic.LoadInt32` is the correct practice to satisfy the Go race detector and maintain consistency.
